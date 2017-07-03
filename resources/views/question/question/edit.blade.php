@@ -1,18 +1,15 @@
-@extends('adminlte::layouts.app')
+@extends('layouts.app')
 
-@section('htmlheader_title')
-    {{ trans('adminlte_lang::message.admin') }}
-@endsection
-
-@section('main-content')
+@section('content')
     <div class="container">
         <div class="row">
+            @include('admin.sidebar')
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Edit Level #{{ $level->id }}</div>
+                    <div class="panel-heading">Edit Question #{{ $question->id }}</div>
                     <div class="panel-body">
-                        <a href="{{ url('/admin/level') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/question') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -23,14 +20,15 @@
                                 @endforeach
                             </ul>
                         @endif
-                        {!! Form::model($level, [
+
+                        {!! Form::model($question, [
                             'method' => 'PATCH',
-                            'url' => ['/admin/level', $level->id],
+                            'url' => ['/admin/question', $question->id],
                             'class' => 'form-horizontal',
                             'files' => true
                         ]) !!}
 
-                        @include ('level.level.editform', ['submitButtonText' => 'Update'])
+                        @include ('question.question.form', ['submitButtonText' => 'Update'])
 
                         {!! Form::close() !!}
 

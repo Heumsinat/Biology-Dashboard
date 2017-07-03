@@ -50,3 +50,5 @@ Route::resource('admin/admin', 'Admin\\AdminController');
 Route::resource('admin/role', 'Role\\RoleController');
 Route::resource('admin/level', 'Level\\LevelController');
 Route::resource('admin/badge', 'Badge\\BadgeController');
+Route::resource('admin/question', 'Question\\QuestionController');
+Route::resource('admin/question', 'Question\\QuestionController');

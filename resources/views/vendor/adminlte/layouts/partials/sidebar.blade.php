@@ -44,7 +44,7 @@
                 <li class="active"><a href="{{ url('user_badge') }}"><span>User Badge</span></a></li>
                 <li class="active"><a href="{{ url('user_question') }}"><span>user Question</span></a></li>
                 <li class="active"><a href="{{ url('admin/level') }}"><span>Level</span></a></li>
-                <li class="active"><a href="{{ url('question') }}"><span>Question</span></a></li>
+                <li class="active"><a href="{{ url('admin/question') }}"><span>Question</span></a></li>
                 <li class="active"><a href="{{ url('admin/badge') }}"><span>Badge</span></a></li>
             {{--<li><a href="#"><span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>--}}
             {{--<li class="treeview">--}}

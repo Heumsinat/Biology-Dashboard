@@ -27,6 +27,10 @@
     <div class="col-md-6">
         {!! Form::file('level_image', null, ['class' => 'form-control']) !!}
         {!! $errors->first('level_image', '<p class="help-block">:message</p>') !!}
+        <input name="old_image" type="hidden" value="{{$level->level_image}}">
+        @if($level->level_image != "")
+            <img src="{{url('/level_img')}}/{{$level->level_image}}" class="edit_level_img">
+        @endif
     </div>
 </div><div class="form-group {{ $errors->has('max_version') ? 'has-error' : ''}}">
     {!! Form::label('max_version', 'Max Version', ['class' => 'col-md-4 control-label']) !!}

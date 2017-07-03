@@ -182,6 +182,8 @@ return [
         */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        //Image compressed
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -237,6 +239,8 @@ return [
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+        // Image compressed
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

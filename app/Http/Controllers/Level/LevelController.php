@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Level;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Image;
 use App\Level;
 use Illuminate\Http\Request;
 use Session;
@@ -55,10 +55,28 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,
+        [
+            'level_image' => 'image|mimes:jpeg,png,jpg,gif',
+        ]);
+        $photo = $request->file('level_image');
+        if($photo != null ){
+            $imagename = str_random(6).'_'.$photo->getClientOriginalName();
+            $destinationPath = public_path('/level_img');
+            // compressed image file size
+            $thumb_img = Image::make($photo->getRealPath())->resize('auto', 'auto');
+            $thumb_img->save($destinationPath.'/'.$imagename,80);
+        }else $imagename ="";
 
-        $requestData = $request->all();
-        
-        Level::create($requestData);
+      //  Level::create($requestData);
+      Level::create([
+              'level_number' => $request->level_number,
+              'level_name' => $request->level_name,
+              'level_short_name' => $request->level_short_name,
+              'level_need_point' => $request->level_need_point,
+              'level_image' => $imagename,
+              'max_version' => $request->max_version
+      ]);
 
         Session::flash('flash_message', 'Level added!');
 
@@ -103,14 +121,35 @@ class LevelController extends Controller
      */
     public function update($id, Request $request)
     {
-        
-        $requestData = $request->all();
-        
+        $this->validate($request,
+        [
+            'level_image' => 'image|mimes:jpeg,png,jpg,gif',
+        ]);
         $level = Level::findOrFail($id);
-        $level->update($requestData);
+        $photo = $request->file('level_image');
+        $old_photo = $request->old_image;
+        $destinationPath = public_path('/level_img');
+        if($photo == NULL){
+            $imagename = $old_photo;
+            var_dump("old");
+        }else {
+            \File::delete($destinationPath.'/'.$old_photo);
+            var_dump($old_photo);
+            $imagename = str_random(6).'_'.$photo->getClientOriginalName();
 
+            // compressed image file size
+            $thumb_img = Image::make($photo->getRealPath())->resize('auto', 'auto');
+            $thumb_img->save($destinationPath.'/'.$imagename,80);
+        }
+        $level->update([
+                'level_number' => $request->level_number,
+                'level_name' => $request->level_name,
+                'level_short_name' => $request->level_short_name,
+                'level_need_point' => $request->level_need_point,
+                'level_image' => $imagename,
+                'max_version' => $request->max_version
+        ]);
         Session::flash('flash_message', 'Level updated!');
-
         return redirect('admin/level');
     }
 
@@ -123,8 +162,12 @@ class LevelController extends Controller
      */
     public function destroy($id)
     {
-        Level::destroy($id);
-
+        $destinationPath = public_path('/level_img');
+        $delete = Level::findOrFail($id);
+        if($delete->level_image != ""){
+          \File::delete($destinationPath.'/'.$delete->level_image);
+        }
+        $delete->delete();
         Session::flash('flash_message', 'Level deleted!');
 
         return redirect('admin/level');
