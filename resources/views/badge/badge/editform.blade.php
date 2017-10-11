@@ -53,22 +53,15 @@
         {!! $errors->first('incorrect_answer_to_lose', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-{{--<div class="form-group {{ $errors->has('badge_image') ? 'has-error' : ''}}">--}}
-    {{--{!! Form::label('badge_image', 'Badge Image', ['class' => 'col-md-4 control-label']) !!}--}}
-    {{--<div class="col-md-6">--}}
-        {{--{!! Form::file('badge_image', null, ['class' => 'form-control']) !!}--}}
-        {{--{!! $errors->first('badge_image', '<p class="help-block">:message</p>') !!}--}}
-        {{--<input name="old_image" type="hidden" value="{{$badge->badge_image}}">--}}
-        {{--@if($level->badge_image != "")--}}
-            {{--<img src="{{url('/badge_img')}}/{{$badge->badge_image}}" class="edit_badge_img">--}}
-        {{--@endif--}}
-    {{--</div>--}}
-{{--</div>--}}
 <div class="form-group {{ $errors->has('badge_image') ? 'has-error' : ''}}">
     {!! Form::label('badge_image', 'Badge Image', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::file('badge_image', null, ['class' => 'form-control']) !!}
         {!! $errors->first('badge_image', '<p class="help-block">:message</p>') !!}
+        <input name="old_image" type="hidden" value="{{$badge->badge_image}}">
+        @if($badge->badge_image != "")
+            <img src="{{url('/badge_img')}}/{{$badge->badge_image}}" class="edit_badge_img">
+        @endif
     </div>
 </div>
 <div class="form-group {{ $errors->has('max_version') ? 'has-error' : ''}}">

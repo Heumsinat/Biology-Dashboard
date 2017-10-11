@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Admin;
 use Illuminate\Http\Request;
 use Session;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -22,13 +23,13 @@ class AdminController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $admin = Admin::where('username', 'LIKE', "%$keyword%")
+            $admin = User::where('username', 'LIKE', "%$keyword%")
 				->orWhere('email', 'LIKE', "%$keyword%")
 				->orWhere('password', 'LIKE', "%$keyword%")
 				->orWhere('role', 'LIKE', "%$keyword%")
 				->paginate($perPage);
         } else {
-            $admin = Admin::paginate($perPage);
+            $admin = User::paginate($perPage);
         }
 
         return view('admin.admin.index', compact('admin'));
@@ -54,12 +55,12 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'username'=> $request->username,
+            'name'=> $request->name,
             'email' => $request->email,
-            'password' => md5($request->password),
-            'role' => $request->role,
+            'password' => bcrypt($request->password),
+            'admin' => '1'
         ];
-        Admin::create($data);
+        User::create($data);
 
         Session::flash('flash_message', 'Admin added!');
 
@@ -75,7 +76,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $admin = Admin::findOrFail($id);
+        $admin = User::findOrFail($id);
 
         return view('admin.admin.show', compact('admin'));
     }
@@ -89,8 +90,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin = Admin::findOrFail($id);
-
+        $admin = User::findOrFail($id);
         return view('admin.admin.edit', compact('admin'));
     }
 
@@ -104,14 +104,8 @@ class AdminController extends Controller
      */
     public function update($id, Request $request)
     {
-        $admin = Admin::findOrFail($id);
-        $data = [
-            'username'=> $request->username,
-            'email' => $request->email,
-            'password' => md5($request->password), //hide password
-            'role' => $request->role,
-        ];
-        $admin->update($data);
+        $admin = User::findOrFail($id);
+        $admin->update($request->all());
 
         Session::flash('flash_message', 'Admin updated!');
 
@@ -127,7 +121,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        Admin::destroy($id);
+        User::destroy($id);
 
         Session::flash('flash_message', 'Admin deleted!');
 

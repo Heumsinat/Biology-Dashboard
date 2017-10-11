@@ -9,7 +9,7 @@
         <div class="row">
             {{--@include('admin.sidebar')--}}
 
-            <div class="col-sm-12">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Badge</div>
                     <div class="panel-body">
@@ -35,14 +35,33 @@
                                 <thead>
                                     <tr>
                                         {{--<th>ID</th>--}}
-                                        <th>Badge Number</th><th>Badge Level</th><th>Short Name</th><th>Long Name</th><th>Level Name</th><th>Level Type</th><th>Need Point</th><th>Max Point</th><th>Incorrect</th><th>Image</th><th>Actions</th>
+                                        <th>Badge Number</th>
+                                        <th>Badge Level</th>
+                                        <th>Short Name</th>
+                                        <th>Long Name</th>
+                                        <th>Level Name</th>
+                                        <th>Level Type</th>
+                                        <th>Need Point</th>
+                                        <th>Max Point</th>
+                                        <th>Incorrect</th>
+                                        <th>Image</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($badge as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->badge_number }}</td><td>{{ $item->badge_level }}</td><td>{{ $item->badge_short_name }}</td><td>{{ $item->badge_long_name }}</td><td>{{ $item->badge_level_name }}</td><td>{{ $item->badge_level_type }}</td><td>{{ $item->start_need_point }}</td><td>{{ $item->max_need_point }}</td><td>{{ $item->incorrect_answer_to_lose }}</td><td>{{ $item->badge_image }}</td>
+                                        {{--<td>{{ $item->id }}</td>--}}
+                                        <td>{{ $item->badge_number }}</td>
+                                        <td>{{ $item->badge_level }}</td>
+                                        <td>{{ $item->badge_short_name }}</td>
+                                        <td>{{ $item->badge_long_name }}</td>
+                                        <td>{{ $item->badge_level_name }}</td>
+                                        <td>{{ $item->badge_level_type }}</td>
+                                        <td>{{ $item->start_need_point }}</td>
+                                        <td>{{ $item->max_need_point }}</td>
+                                        <td>{{ $item->incorrect_answer_to_lose }}</td>
+                                        <td><img src="{{url('/badge_img')}}/{{ $item->badge_image }}" alt="{{ $item->badge_image }}" class="badge_img"></td>
                                         <td>
                                             <a href="{{ url('/admin/badge/' . $item->id) }}" title="View Badge"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/badge/' . $item->id . '/edit') }}" title="Edit Badge"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

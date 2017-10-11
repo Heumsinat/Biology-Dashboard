@@ -31,7 +31,6 @@
                             'class' => 'form-horizontal',
                             'files' => true
                         ]) !!}
-
                         @include ('admin.admin.form', ['submitButtonText' => 'Update'])
 
                         {!! Form::close() !!}

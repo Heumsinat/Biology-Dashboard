@@ -9,3 +9,15 @@ table.level tbody tr td{
     margin-top: 10px;
     width: 160px
 }
+
+.badge_img {
+    width: 90px;
+    height: auto;
+}
+table.badge tbody tr td{
+    line-height: 56px;
+}
+.edit_badge_img {
+    margin-top: 10px;
+    width: 160px
+}

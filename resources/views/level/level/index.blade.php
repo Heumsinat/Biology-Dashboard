@@ -34,7 +34,13 @@
                             <table class="table table-borderless level">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Level Number</th><th>Level Name</th><th>Level Short Name</th><th>Need Point</th><th>Image</th><th>Actions</th>
+                                        <th>ID</th>
+                                        <th>Level Number</th>
+                                        <th>Level Name</th>
+                                        <th>Level Short Name</th>
+                                        <th>Need Point</th>
+                                        <th>Image</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -37,25 +37,25 @@
 </div><div class="form-group {{ $errors->has('question_sound_path') ? 'has-error' : ''}}">
     {!! Form::label('question_sound_path', 'Question Sound Path', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('question_sound_path', null, ['class' => 'form-control']) !!}
+        {!! Form::file('question_sound_path', null, ['class' => 'form-control']) !!}
         {!! $errors->first('question_sound_path', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('question_correct_answer_sound_path') ? 'has-error' : ''}}">
     {!! Form::label('question_correct_answer_sound_path', 'Question Correct Answer Sound Path', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('question_correct_answer_sound_path', null, ['class' => 'form-control']) !!}
+        {!! Form::file('question_correct_answer_sound_path', null, ['class' => 'form-control']) !!}
         {!! $errors->first('question_correct_answer_sound_path', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('question_incorrect_answer_sound_path') ? 'has-error' : ''}}">
     {!! Form::label('question_incorrect_answer_sound_path', 'Question Incorrect Answer Sound Path', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('question_incorrect_answer_sound_path', null, ['class' => 'form-control']) !!}
+        {!! Form::file('question_incorrect_answer_sound_path', null, ['class' => 'form-control']) !!}
         {!! $errors->first('question_incorrect_answer_sound_path', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('question_message_sound_path') ? 'has-error' : ''}}">
     {!! Form::label('question_message_sound_path', 'Question Message Sound Path', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('question_message_sound_path', null, ['class' => 'form-control']) !!}
+        {!! Form::file('question_message_sound_path', null, ['class' => 'form-control']) !!}
         {!! $errors->first('question_message_sound_path', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('max_version') ? 'has-error' : ''}}">

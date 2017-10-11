@@ -32,17 +32,20 @@
         <ul class="sidebar-menu">
             {{--<li class="header">{{ trans('adminlte_lang::message.header') }}</li>--}}
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><span>Adminstrator</span><i class="fa fa-angle-left pull-right"></i></a>
-                {{--<li class="treeview">--}}
-                    {{--<a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>--}}
-                    <ul class="treeview-menu">
-                        <li><a href="{{ url('admin/admin')}}"><span>Admin</span></a></li>
-                        <li><a href="{{ url('admin/role')}}"><span>Role</span></a></li>
-                    </ul>
-                </li>
+
+                    {{--<a href="{{ url('home') }}"><span>Adminstrator</span><i class="fa fa-angle-left pull-right"></i></a>--}}
+                @if(Auth::user()->admin == 1)
+                    <li class="treeview">
+                        <a href="{{ url('home') }}"> <span>Adminstrator</span> <i class="fa fa-angle-left pull-right"></i></a>
+                         <ul class="treeview-menu">
+                             <li><a href="{{ url('admin/admin')}}"><span>Admin</span></a></li>
+                            <li><a href="{{ url('admin/role')}}"><span>Role</span></a></li>
+                        </ul>
+                     </li>
+                @endif
                 <li class="active"><a href="{{ url('admin') }}"><span>User</span></a></li>
-                <li class="active"><a href="{{ url('user_badge') }}"><span>User Badge</span></a></li>
-                <li class="active"><a href="{{ url('user_question') }}"><span>user Question</span></a></li>
+                <li class="active"><a href="#"><span>User Badge</span></a></li>
+                <li class="active"><a href="#"><span>user Question</span></a></li>
                 <li class="active"><a href="{{ url('admin/level') }}"><span>Level</span></a></li>
                 <li class="active"><a href="{{ url('admin/question') }}"><span>Question</span></a></li>
                 <li class="active"><a href="{{ url('admin/badge') }}"><span>Badge</span></a></li>

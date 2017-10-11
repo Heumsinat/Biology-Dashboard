@@ -32,7 +32,7 @@
                             'files' => true
                         ]) !!}
 
-                        @include ('badge.badge.form', ['submitButtonText' => 'Update'])
+                        @include ('badge.badge.editform', ['submitButtonText' => 'Update'])
 
                         {!! Form::close() !!}
 

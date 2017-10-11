@@ -17,26 +17,26 @@ Route::get('/', function () {
 //Route::get('/admin', function () {
 //    return view('adminlte::admin');
 //});
-Route::get('/question', function () {
-    return view('adminlte::question');
-});
-Route::get('/level', function () {
-    return view('adminlte::level');
-});
-Route::get('/badge', function () {
-    return view('adminlte::badge');
-});
-Route::get('/user_badge', function () {
-    return view('adminlte::user_badge');
-});
+//Route::get('/question', function () {
+//    return view('adminlte::question');
+//});
+//Route::get('/level', function () {
+//    return view('adminlte::level');
+//});
+//Route::get('/badge', function () {
+//    return view('adminlte::badge');
+//});
+//Route::get('/user_badge', function () {
+//    return view('adminlte::user_badge');
+//});
+//
+//Route::get('/user_question', function () {
+//    return view('adminlte::user_question');
+//});
 
-Route::get('/user_question', function () {
-    return view('adminlte::user_question');
-});
 
 
-
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'admin'], function () {
 
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware
@@ -44,11 +44,19 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
+    Route::resource('admin/admin', 'Admin\\AdminController');
+    Route::resource('admin/role', 'Role\\RoleController');
+    Route::resource('admin/level', 'Level\\LevelController');
+    Route::resource('admin/badge', 'Badge\\BadgeController');
+    Route::resource('admin/question', 'Question\\QuestionController');
+    Route::resource('admin/question', 'Question\\QuestionController');
 });
+Route::group(['middleware' => 'auth'], function () {
 
-Route::resource('admin/admin', 'Admin\\AdminController');
-Route::resource('admin/role', 'Role\\RoleController');
-Route::resource('admin/level', 'Level\\LevelController');
-Route::resource('admin/badge', 'Badge\\BadgeController');
-Route::resource('admin/question', 'Question\\QuestionController');
-Route::resource('admin/question', 'Question\\QuestionController');
+});
+Route::get('api/question', 'ApiController@question');
+Route::get('api/level', 'ApiController@level');
+Route::post('api/login', 'ApiController@login');
+Route::post('api/test/store', 'ApiController@test');
+Route::post('api/test/{id}', 'ApiController@updatetest');
+Route::delete('api/test/{id}/delete', 'ApiController@deletetest');

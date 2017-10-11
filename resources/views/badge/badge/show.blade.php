@@ -34,10 +34,17 @@
                         <div class="table-responsive">
                             <table class="table table-borderless">
                                 <tbody>
-                                    <tr>
-                                        <th>ID</th><td>{{ $badge->id }}</td>
-                                    </tr>
-                                    <tr><th> Badge Number </th><td> {{ $badge->badge_number }} </td></tr><tr><th> Badge Level </th><td> {{ $badge->badge_level }} </td></tr><tr><th> Badge Short Name </th><td> {{ $badge->badge_short_name }} </td></tr>
+                                    {{--<tr><th>ID</th><td>{{ $badge->id }}</td></tr>--}}
+                                    <tr><th> Badge Number </th><td> {{ $badge->badge_number }} </td></tr>
+                                    <tr><th> Badge Level </th><td> {{ $badge->badge_level }} </td></tr>
+                                    <tr><th> Badge Short Name </th><td> {{ $badge->badge_short_name }} </td></tr>
+                                    <tr><th>Long Name</th><td>  {{ $badge->badge_long_name }}</td></tr>
+                                    <tr><th>Level Name</th> <td>   {{ $badge->badge_level_name }}</td></tr>
+                                    <tr><th>Level Type</th><td> {{ $badge->badge_level_type }}</td></tr>
+                                    <tr><th>Need Point</th><td> {{ $badge->start_need_point }}</td></tr>
+                                    <tr><th>Max Point</th><td>  {{ $badge->max_need_point }}</td></tr>
+                                    <tr><th>Incorrect</th><td>  {{ $badge->incorrect_answer_to_lose }}</td></tr>
+                                    <tr><th>Image</th><td><img src="{{url('/badge_img')}}/{{ $badge->badge_image }}" alt="{{ $badge->badge_image }}" class="badge_img"></td></tr>
                                 </tbody>
                             </table>
                         </div>
